@@ -141,9 +141,9 @@ Calendar = CALENDAR(
 In addition, three extra columns were extracted from 
 the calendar: day, month and year, plus a helper ‘MonthNo’ column to sort the months by calendar rather than alphabetically
 ```
-Day = DAY('Календарь'[Date])
-Month = FORMAT('Календарь'[Date], "MMMM", "en-US")
-MonthNo = MONTH('Календарь'[Date])
-Year = YEAR('Календарь'[Date])
+Day = DAY('Calendar'[Date])
+Month = FORMAT('Calendar'[Date], "MMMM", "en-US")
+MonthNo = MONTH('Calendar'[Date])
+Year = YEAR('Calendar'[Date])
 ```
 
