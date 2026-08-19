@@ -185,8 +185,10 @@ WHERE plan_type = 'Pro'
 ```
 | last_old_price      | first_new_price     | 
 |---------------------|---------------------|
-| 2026-05-01 00:00:00 | 2022-01-08 00:00:00 | 
+| 2026-05-01 00:00:00 | 2022-01-08 00:00:00 |
+
 it was found that both prices existed throughout the entire period (14.99 appears from April 2022 to May 2026, 19.99 from January 2022), rather than replacing one another – the hypothesis was not confirmed.
+
 
 Final decision – mark these four entries as ‘False’ in `valid_plans`; do not delete them without good reason
 
