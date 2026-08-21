@@ -3,8 +3,9 @@ import pandas as pd
 import numpy as np
 from dotenv import load_dotenv
 import os
-
+from sqlalchemy import text
 load_dotenv()
+
 engine = create_engine(f'postgresql+psycopg2://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@{os.getenv("DB_HOST")}:{os.getenv("DB_PORT")}/{os.getenv("DB_NAME")}')
 
 customers_raw =  pd.read_sql('SELECT * FROM customers_raw', engine)
@@ -47,10 +48,14 @@ data_to_export = {
     'subscriptions_clean': subscriptions_raw,
     'payments_clean': payments_raw
 }
+
+with engine.begin() as connection:
+    connection.execute(text("TRUNCATE TABLE customers_clean, subscriptions_clean, payments_clean CASCADE"))
+
 for table_name, df in data_to_export.items():
     df.to_sql(
         name=table_name,
         con=engine,
-        if_exists='replace',
+        if_exists='append',
         index=False
     )
